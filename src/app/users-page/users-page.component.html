@@ -1,0 +1,41 @@
+<nav class="navbar main">
+
+  <div
+    class="form-control"
+  >
+    <label for="page">Page:</label>
+    <input id="page" type="number" min="1" [max]="numOfPages" [ngModel]="curPage" (ngModelChange)="setCurPage($event)">
+    <small>of {{numOfPages}}</small>
+  </div>
+</nav>
+<div class="users">
+</div>
+<table>
+  <thead>
+  <tr>
+    <th width="60px" scope="col">#</th>
+    <th width="10%" scope="col">Имя</th>
+    <th width="10%" scope="col">Фамилия</th>
+    <th scope="col">email</th>
+    <th width="60px" scope="col">Пол</th>
+    <th width="120px" scope="col">IP</th>
+    <th width="120px" scope="col">Статистика</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of pageUsers; let idx = index">
+    <td aria-level="Id">{{user.id}}</td>
+    <td aria-level="Fist Name">{{user.first_name}}</td>
+    <td aria-level="Last Name">{{user.last_name}}</td>
+    <td aria-level="Email">{{user.email}}</td>
+    <td aria-level="Gender">{{user.gender}}</td>
+    <td ria-level="Ip">{{user.ip_address}}</td>
+    <td ria-level="Statistics"><button
+      class="btn btn-link open"
+      [routerLink]="['/user', user.id]">Статистика</button></td>
+  </tr>
+  </tbody>
+</table>
+<ng-template #loading>
+  <p class="text-center">Загрузка...</p>
+</ng-template>

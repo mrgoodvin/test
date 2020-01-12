@@ -1,0 +1,45 @@
+<div class="text-center">
+  <button routerLink="/" class="text-center btn btn-link">На главную</button>
+</div>
+
+<nav class="navbar main" #nb>
+
+  <div
+    class="form-control">
+    <input id="prev" type="date" placeholder="prev date" [(ngModel)]="prev" (ngModelChange)="getStatics($event)"
+           [max]="to">
+  </div>
+  <div
+    class="form-control">
+    <input id="from" type="date" placeholder="to date" [(ngModel)]="to" (ngModelChange)="getStatics($event)"
+           [min]="prev">
+  </div>
+</nav>
+
+<div *ngIf="user$ | async as user; else loading">
+  <div class="user">
+    <div class="header">
+      <strong>{{ user.first_name + ", " + user.last_name}}</strong>
+    </div>
+
+    <div class="info">
+      <small>email: {{user.email}}</small>
+      <p>
+        <small>ip: {{ user.ip_address }}</small>
+      </p>
+    </div>
+  </div>
+</div>
+<div>
+  <jqxChart
+    [width]="nb.offsetWidth - nb.offsetLeft*2" [height]="500"
+    [title]="'Statistic of user'"
+    [description]="'Clicks and views'"
+    [showLegend]="true" [enableAnimations]="true" [padding]="padding"
+    [titlePadding]="titlePadding" [source]="statisticsData$ | async" [xAxis]="xAxis"
+    [seriesGroups]="seriesGroups" [colorScheme]="'scheme01'">
+  </jqxChart>
+</div>
+<ng-template #loading>
+  <p class="text-center">Загружаю данные...</p>
+</ng-template>
