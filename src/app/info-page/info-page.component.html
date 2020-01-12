@@ -6,12 +6,12 @@
 
   <div
     class="form-control">
-    <input id="prev" type="date" placeholder="prev date" [(ngModel)]="prev" (ngModelChange)="getStatics($event)"
+    <input id="prev" type="date" placeholder="prev date" [(ngModel)]="prev" (ngModelChange)="getStatics()"
            [max]="to">
   </div>
   <div
     class="form-control">
-    <input id="from" type="date" placeholder="to date" [(ngModel)]="to" (ngModelChange)="getStatics($event)"
+    <input id="from" type="date" placeholder="to date" [(ngModel)]="to" (ngModelChange)="getStatics()"
            [min]="prev">
   </div>
 </nav>
